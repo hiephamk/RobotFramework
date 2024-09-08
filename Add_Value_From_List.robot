@@ -1,6 +1,5 @@
 *** Settings ***
 Library    Collections
-Library    ../.venv/lib/python3.12/site-packages/robot/libraries/OperatingSystem.py
 *** Variables ***
 @{list}    1    2    3    4
 
