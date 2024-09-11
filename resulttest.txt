@@ -1,0 +1,21 @@
+(www.whitehouse.gov)_ip_Adress: 192.0.66.190
+Time: 30.123
+Time: 37.033
+Time: 37.378
+Time: 31.661
+Average Ping_Time: 34.04875
+
+(www.iltalehti.fi)_ip_Adress: 52.85.49.69
+Time: 21.446
+Time: 18.661
+Time: 23.596
+Time: 29.355
+Average Ping_Time: 23.2645
+
+(best.aliexpress.com)_ip_Adress: 23.52.21.157
+Time: 27.971
+Time: 32.034
+Time: 34.760
+Time: 32.726
+Average Ping_Time: 31.872749999999996
+
