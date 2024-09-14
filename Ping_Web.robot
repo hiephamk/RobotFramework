@@ -6,7 +6,7 @@ Library    Collections
 
 *** Test Cases ***
 Get Ip address and ping time
-    ${path}    Set Variable    /Users/hieph/RobotFramework/
+    ${path}    Set Variable    *****
     ${webPages}=    Get File    ${path}webpages.txt
     ${webAddress}=    Split String    ${webPages}
     ${length}=    Get Length    ${webAddress}
