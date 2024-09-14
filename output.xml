@@ -1,797 +1,325 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0.1 (Python 3.12.5 on darwin)" generated="2024-09-11T19:23:27.687081" rpa="false" schemaversion="5">
-<suite id="s1" name="Ping Web" source="/Users/hieph/RobotFramework/Ping_Web.robot">
-<test id="s1-t1" name="Get Ip address and ping time" line="8">
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:27.704550" level="INFO">${path} = /Users/hieph/RobotFramework/</msg>
-<var>${path}</var>
-<arg>/Users/hieph/RobotFramework/</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.704408" elapsed="0.000760"/>
+<robot generator="Robot 7.0.1 (Python 3.12.5 on darwin)" generated="2024-09-14T17:34:22.951925" rpa="false" schemaversion="5">
+<suite id="s1" name="RF Test Web Demo" source="/Users/hieph/RobotFramework/RF_Test_Web_Demo.robot">
+<test id="s1-t1" name="Assignment4_Test_website" line="13">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:23.134915" level="INFO">Opening browser 'Chrome' to base url 'http://blazedemo.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=add_argument("--disable-search-engine-choice-screen");add_experimental_option("detach", True)</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-09-14T17:34:23.134503" elapsed="2.817047"/>
 </kw>
-<kw name="Get File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:27.705658" level="INFO" html="true">Getting file '&lt;a href="file:///Users/hieph/RobotFramework/webpages.txt"&gt;/Users/hieph/RobotFramework/webpages.txt&lt;/a&gt;'.</msg>
-<msg time="2024-09-11T19:23:27.705891" level="INFO">${webPages} = www.whitehouse.gov
-www.iltalehti.fi
-best.aliexpress.com</msg>
-<var>${webPages}</var>
-<arg>${path}webpages.txt</arg>
-<doc>Returns the contents of a specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.705455" elapsed="0.000492"/>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-09-14T17:34:27.953784" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-09-14T17:34:25.952648" elapsed="2.001418"/>
 </kw>
-<kw name="Split String" owner="String">
-<msg time="2024-09-11T19:23:27.706184" level="INFO">${webAddress} = ['www.whitehouse.gov', 'www.iltalehti.fi', 'best.aliexpress.com']</msg>
-<var>${webAddress}</var>
-<arg>${webPages}</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.706061" elapsed="0.000164"/>
-</kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2024-09-11T19:23:27.706396" level="INFO">Length is 3.</msg>
-<msg time="2024-09-11T19:23:27.706453" level="INFO">${length} = 3</msg>
-<var>${length}</var>
-<arg>${webAddress}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.706308" elapsed="0.000178"/>
-</kw>
-<kw name="Create File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:27.706886" level="INFO" html="true">Created file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<doc>Creates a file with the given content and encoding.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.706601" elapsed="0.000359"/>
-</kw>
-<for flavor="IN RANGE">
-<iter>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:27.707732" level="INFO">${items} = www.whitehouse.gov</msg>
-<var>${items}</var>
-<arg>${webAddress}[${i}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.707595" elapsed="0.000190"/>
-</kw>
-<kw name="Run And Return Rc And Output" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:27.711011" level="INFO">Running command 'ping www.whitehouse.gov -c 4 2&gt;&amp;1'.</msg>
-<msg time="2024-09-11T19:23:30.764586" level="INFO">${getString} = (0, 'PING wh46.go-vip.net (192.0.66.190): 56 data bytes\n64 bytes from 192.0.66.190: icmp_seq=0 ttl=57 time=30.123 ms\n64 bytes from 192.0.66.190: icmp_seq=1 ttl=57 time=37.033 ms\n64 bytes from 192.0...</msg>
-<var>${getString}</var>
-<arg>ping ${items} -c 4</arg>
-<doc>Runs the given command in the system and returns the RC and output.</doc>
-<status status="PASS" start="2024-09-11T19:23:27.707856" elapsed="3.057488"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2024-09-11T19:23:30.767333" level="INFO">${result} = ['PING', 'wh46.go-vip.net', '(192.0.66.190):', '56', 'data', 'bytes', '64', 'bytes', 'from', '192.0.66.190:', 'icmp_seq=0', 'ttl=57', 'time=30.123', 'ms', '64', 'bytes', 'from', '192.0.66.190:', 'icmp...</msg>
-<var>${result}</var>
-<arg>${getString}[1]</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.766356" elapsed="0.001107"/>
-</kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.767949" level="INFO">Length is 57.</msg>
-<msg time="2024-09-11T19:23:30.768107" level="INFO">${len} = 57</msg>
-<var>${len}</var>
-<arg>${result}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.767666" elapsed="0.000547"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:30.768732" level="INFO">${index} = 8</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.768423" elapsed="0.000660"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.770209" level="INFO">${index} = 9</msg>
-<var>${index}</var>
-<arg>${index}+1</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.769472" elapsed="0.000902"/>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:27.968763" level="INFO">Current page contains text 'Welcome to the Simple Travel Agency!'.</msg>
+<arg>Welcome to the Simple Travel Agency!</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-09-14T17:34:27.954493" elapsed="0.014431"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.771442" level="INFO">${ipAddress} = 192.0.66.190:</msg>
-<var>${ipAddress}</var>
-<arg>${result}[${index}]</arg>
+<msg time="2024-09-14T17:34:27.969723" level="INFO">${departure} = Boston</msg>
+<var>${departure}</var>
+<arg>Boston</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.770662" elapsed="0.000896"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:30.772049" level="INFO">${ipAddress} = 192.0.66.190</msg>
-<var>${ipAddress}</var>
-<arg>${ipAddress}</arg>
-<arg>:</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.771758" elapsed="0.000417"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.773700" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>(${items})_ip_Adress: ${ipAddress}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.772363" elapsed="0.001662"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.775333" level="INFO">${index} = 12</msg>
-<var>${index}</var>
-<arg>${index}+3</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.774493" elapsed="0.001070"/>
+<status status="PASS" start="2024-09-14T17:34:27.969340" elapsed="0.000552"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.777198" level="INFO">${pingTime1} = time=30.123</msg>
-<var>${pingTime1}</var>
-<arg>${result}[${index}]</arg>
+<msg time="2024-09-14T17:34:27.970291" level="INFO">${destination} = Cairo</msg>
+<var>${destination}</var>
+<arg>Cairo</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.776618" elapsed="0.000884"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:30.778914" level="INFO">${pingTime1} = 30.123</msg>
-<var>${pingTime1}</var>
-<arg>${pingTime1}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.778182" elapsed="0.000903"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.781055" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime1}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.779346" elapsed="0.001980"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:30.782830" level="INFO">${index} = 16</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.781704" elapsed="0.001494"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.784018" level="INFO">${index} = 20</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.783430" elapsed="0.000824"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.785280" level="INFO">${pingTime2} = time=37.033</msg>
-<var>${pingTime2}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.784710" elapsed="0.000672"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:30.785809" level="INFO">${pingTime2} = 37.033</msg>
-<var>${pingTime2}</var>
-<arg>${pingTime2}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.785561" elapsed="0.000396"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.787049" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime2}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.786236" elapsed="0.000988"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:30.787793" level="INFO">${index} = 24</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.787471" elapsed="0.000421"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.788411" level="INFO">${index} = 28</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.788082" elapsed="0.000477"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.789018" level="INFO">${pingTime3} = time=37.378</msg>
-<var>${pingTime3}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.788757" elapsed="0.000374"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:30.789499" level="INFO">${pingTime3} = 37.378</msg>
-<var>${pingTime3}</var>
-<arg>${pingTime3}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.789278" elapsed="0.000347"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.791149" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime3}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.789765" elapsed="0.001597"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:30.791972" level="INFO">${index} = 32</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.791542" elapsed="0.000687"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.792927" level="INFO">${index} = 36</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.792595" elapsed="0.000406"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.793295" level="INFO">${pingTime4} = time=31.661</msg>
-<var>${pingTime4}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.793119" elapsed="0.000245"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:30.793733" level="INFO">${pingTime4} = 31.661</msg>
-<var>${pingTime4}</var>
-<arg>${pingTime4}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.793480" elapsed="0.000375"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.796471" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime4}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.794015" elapsed="0.002663"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.797409" level="INFO">${averageTime} = 34.04875</msg>
-<var>${averageTime}</var>
-<arg>(${pingTime1}+${pingTime2}+${pingTime3}+${pingTime4})/4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.796986" elapsed="0.000512"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.798454" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Average Ping_Time: ${averageTime}\n\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.797629" elapsed="0.000980"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime1}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.798838" elapsed="0.000213"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime2}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.799226" elapsed="0.000236"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime3}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.799603" elapsed="0.000191"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime4}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.799915" elapsed="0.000170"/>
-</kw>
-<var name="${i}">0</var>
-<status status="PASS" start="2024-09-11T19:23:27.707511" elapsed="3.092644"/>
-</iter>
-<iter>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:30.800815" level="INFO">${items} = www.iltalehti.fi</msg>
-<var>${items}</var>
-<arg>${webAddress}[${i}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.800627" elapsed="0.000285"/>
-</kw>
-<kw name="Run And Return Rc And Output" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:30.821221" level="INFO">Running command 'ping www.iltalehti.fi -c 4 2&gt;&amp;1'.</msg>
-<msg time="2024-09-11T19:23:33.922032" level="INFO">${getString} = (0, 'PING d4dgdwhncmjfe.cloudfront.net (52.85.49.69): 56 data bytes\n64 bytes from 52.85.49.69: icmp_seq=0 ttl=247 time=21.446 ms\n64 bytes from 52.85.49.69: icmp_seq=1 ttl=247 time=18.661 ms\n64 byte...</msg>
-<var>${getString}</var>
-<arg>ping ${items} -c 4</arg>
-<doc>Runs the given command in the system and returns the RC and output.</doc>
-<status status="PASS" start="2024-09-11T19:23:30.801038" elapsed="3.121629"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2024-09-11T19:23:33.924756" level="INFO">${result} = ['PING', 'd4dgdwhncmjfe.cloudfront.net', '(52.85.49.69):', '56', 'data', 'bytes', '64', 'bytes', 'from', '52.85.49.69:', 'icmp_seq=0', 'ttl=247', 'time=21.446', 'ms', '64', 'bytes', 'from', '52.85.49....</msg>
-<var>${result}</var>
-<arg>${getString}[1]</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.923763" elapsed="0.001195"/>
-</kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.925708" level="INFO">Length is 57.</msg>
-<msg time="2024-09-11T19:23:33.925852" level="INFO">${len} = 57</msg>
-<var>${len}</var>
-<arg>${result}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.925478" elapsed="0.000466"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:33.926389" level="INFO">${index} = 8</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.926120" elapsed="0.000365"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.927062" level="INFO">${index} = 9</msg>
-<var>${index}</var>
-<arg>${index}+1</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.926669" elapsed="0.000487"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.928560" level="INFO">${ipAddress} = 52.85.49.69:</msg>
-<var>${ipAddress}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.927787" elapsed="0.001066"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:33.929556" level="INFO">${ipAddress} = 52.85.49.69</msg>
-<var>${ipAddress}</var>
-<arg>${ipAddress}</arg>
-<arg>:</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.929204" elapsed="0.000485"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.931384" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>(${items})_ip_Adress: ${ipAddress}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.929905" elapsed="0.001844"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.933386" level="INFO">${index} = 12</msg>
-<var>${index}</var>
-<arg>${index}+3</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.932385" elapsed="0.001643"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.935584" level="INFO">${pingTime1} = time=21.446</msg>
-<var>${pingTime1}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.934543" elapsed="0.001397"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:33.937338" level="INFO">${pingTime1} = 21.446</msg>
-<var>${pingTime1}</var>
-<arg>${pingTime1}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.936431" elapsed="0.001071"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.939199" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime1}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.937799" elapsed="0.001603"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:33.940421" level="INFO">${index} = 16</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.939738" elapsed="0.000893"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.941708" level="INFO">${index} = 20</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.941138" elapsed="0.000728"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.942262" level="INFO">${pingTime2} = time=18.661</msg>
-<var>${pingTime2}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.942021" elapsed="0.000331"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:33.943106" level="INFO">${pingTime2} = 18.661</msg>
-<var>${pingTime2}</var>
-<arg>${pingTime2}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.942752" elapsed="0.000480"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.945213" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime2}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.943397" elapsed="0.002046"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:33.946408" level="INFO">${index} = 24</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.945726" elapsed="0.000875"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.947345" level="INFO">${index} = 28</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.947005" elapsed="0.000434"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.948011" level="INFO">${pingTime3} = time=23.596</msg>
-<var>${pingTime3}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.947689" elapsed="0.000445"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:33.948490" level="INFO">${pingTime3} = 23.596</msg>
-<var>${pingTime3}</var>
-<arg>${pingTime3}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.948284" elapsed="0.000298"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.949919" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime3}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.948771" elapsed="0.001325"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:33.951154" level="INFO">${index} = 32</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.950527" elapsed="0.000779"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.951904" level="INFO">${index} = 36</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.951629" elapsed="0.000348"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.952619" level="INFO">${pingTime4} = time=29.355</msg>
-<var>${pingTime4}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.952119" elapsed="0.000745"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:33.953401" level="INFO">${pingTime4} = 29.355</msg>
-<var>${pingTime4}</var>
-<arg>${pingTime4}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.953097" elapsed="0.000392"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.954751" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime4}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.953625" elapsed="0.001275"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.955498" level="INFO">${averageTime} = 23.2645</msg>
-<var>${averageTime}</var>
-<arg>(${pingTime1}+${pingTime2}+${pingTime3}+${pingTime4})/4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.955118" elapsed="0.000458"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.956253" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Average Ping_Time: ${averageTime}\n\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.955700" elapsed="0.000853"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime1}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.956725" elapsed="0.000317"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime2}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.957178" elapsed="0.031909"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime3}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.989439" elapsed="0.000234"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime4}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.989777" elapsed="0.000125"/>
-</kw>
-<var name="${i}">1</var>
-<status status="PASS" start="2024-09-11T19:23:30.800497" elapsed="3.189463"/>
-</iter>
-<iter>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:33.990404" level="INFO">${items} = best.aliexpress.com</msg>
-<var>${items}</var>
-<arg>${webAddress}[${i}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.990276" elapsed="0.000197"/>
-</kw>
-<kw name="Run And Return Rc And Output" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:33.992878" level="INFO">Running command 'ping best.aliexpress.com -c 4 2&gt;&amp;1'.</msg>
-<msg time="2024-09-11T19:23:37.079676" level="INFO">${getString} = (0, 'PING e11956.x.akamaiedge.net (23.52.21.157): 56 data bytes\n64 bytes from 23.52.21.157: icmp_seq=0 ttl=54 time=27.971 ms\n64 bytes from 23.52.21.157: icmp_seq=1 ttl=54 time=32.034 ms\n64 bytes fr...</msg>
-<var>${getString}</var>
-<arg>ping ${items} -c 4</arg>
-<doc>Runs the given command in the system and returns the RC and output.</doc>
-<status status="PASS" start="2024-09-11T19:23:33.990554" elapsed="3.089848"/>
-</kw>
-<kw name="Split String" owner="String">
-<msg time="2024-09-11T19:23:37.082514" level="INFO">${result} = ['PING', 'e11956.x.akamaiedge.net', '(23.52.21.157):', '56', 'data', 'bytes', '64', 'bytes', 'from', '23.52.21.157:', 'icmp_seq=0', 'ttl=54', 'time=27.971', 'ms', '64', 'bytes', 'from', '23.52.21.157:...</msg>
-<var>${result}</var>
-<arg>${getString}[1]</arg>
-<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.081521" elapsed="0.001147"/>
-</kw>
-<kw name="Get Length" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.083214" level="INFO">Length is 57.</msg>
-<msg time="2024-09-11T19:23:37.083385" level="INFO">${len} = 57</msg>
-<var>${len}</var>
-<arg>${result}</arg>
-<doc>Returns and logs the length of the given item as an integer.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.082938" elapsed="0.000559"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:37.084037" level="INFO">${index} = 8</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.083702" elapsed="0.000451"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.084810" level="INFO">${index} = 9</msg>
-<var>${index}</var>
-<arg>${index}+1</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.084386" elapsed="0.000520"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.085412" level="INFO">${ipAddress} = 23.52.21.157:</msg>
-<var>${ipAddress}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.085133" elapsed="0.000382"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:37.085917" level="INFO">${ipAddress} = 23.52.21.157</msg>
-<var>${ipAddress}</var>
-<arg>${ipAddress}</arg>
-<arg>:</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.085676" elapsed="0.000355"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:37.089379" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>(${items})_ip_Adress: ${ipAddress}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.086355" elapsed="0.003788"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.091365" level="INFO">${index} = 12</msg>
-<var>${index}</var>
-<arg>${index}+3</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.090540" elapsed="0.001061"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.092703" level="INFO">${pingTime1} = time=27.971</msg>
-<var>${pingTime1}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.092006" elapsed="0.001080"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:37.094091" level="INFO">${pingTime1} = 27.971</msg>
-<var>${pingTime1}</var>
-<arg>${pingTime1}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.093539" elapsed="0.000825"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:37.097282" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime1}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.094862" elapsed="0.002798"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:37.099112" level="INFO">${index} = 16</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.098318" elapsed="0.000962"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.100721" level="INFO">${index} = 20</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.100047" elapsed="0.000893"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.101599" level="INFO">${pingTime2} = time=32.034</msg>
-<var>${pingTime2}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.101323" elapsed="0.000709"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:37.103205" level="INFO">${pingTime2} = 32.034</msg>
-<var>${pingTime2}</var>
-<arg>${pingTime2}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.102483" elapsed="0.001492"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:37.105534" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime2}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.104465" elapsed="0.001559"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:37.106855" level="INFO">${index} = 24</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.106360" elapsed="0.000600"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.107433" level="INFO">${index} = 28</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.107142" elapsed="0.000380"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.108279" level="INFO">${pingTime3} = time=34.760</msg>
-<var>${pingTime3}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.107672" elapsed="0.000957"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:37.140633" level="INFO">${pingTime3} = 34.760</msg>
-<var>${pingTime3}</var>
-<arg>${pingTime3}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.109188" elapsed="0.031682"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:37.141900" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime3}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.141165" elapsed="0.000888"/>
-</kw>
-<kw name="Get Index From List" owner="Collections">
-<msg time="2024-09-11T19:23:37.142495" level="INFO">${index} = 32</msg>
-<var>${index}</var>
-<arg>${result}</arg>
-<arg>from</arg>
-<arg>${index}</arg>
-<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.142175" elapsed="0.000400"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.142967" level="INFO">${index} = 36</msg>
-<var>${index}</var>
-<arg>${index}+4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.142705" elapsed="0.000331"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.143337" level="INFO">${pingTime4} = time=32.726</msg>
-<var>${pingTime4}</var>
-<arg>${result}[${index}]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.143172" elapsed="0.000331"/>
-</kw>
-<kw name="Remove String" owner="String">
-<msg time="2024-09-11T19:23:37.144030" level="INFO">${pingTime4} = 32.726</msg>
-<var>${pingTime4}</var>
-<arg>${pingTime4}</arg>
-<arg>time=</arg>
-<doc>Removes all ``removables`` from the given ``string``.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.143629" elapsed="0.000557"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:37.147762" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Time: ${pingTime4}\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.145517" elapsed="0.002414"/>
-</kw>
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2024-09-11T19:23:37.148757" level="INFO">${averageTime} = 31.872749999999996</msg>
-<var>${averageTime}</var>
-<arg>(${pingTime1}+${pingTime2}+${pingTime3}+${pingTime4})/4</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.148186" elapsed="0.000740"/>
-</kw>
-<kw name="Append To File" owner="OperatingSystem">
-<msg time="2024-09-11T19:23:37.149979" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/hieph/RobotFramework/resulttest.txt"&gt;/Users/hieph/RobotFramework/resulttest.txt&lt;/a&gt;'.</msg>
-<arg>${path}resulttest.txt</arg>
-<arg>Average Ping_Time: ${averageTime}\n\n</arg>
-<doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.149144" elapsed="0.001055"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime1}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.150576" elapsed="0.001669"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime2}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.153070" elapsed="0.000414"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime3}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.153596" elapsed="0.000129"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${pingTime4}&lt;50.0</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2024-09-11T19:23:37.153808" elapsed="0.000113"/>
-</kw>
-<var name="${i}">2</var>
-<status status="PASS" start="2024-09-11T19:23:33.990188" elapsed="3.163779"/>
-</iter>
-<var>${i}</var>
-<value>${length}</value>
-<status status="PASS" start="2024-09-11T19:23:27.707296" elapsed="9.446739"/>
-</for>
-<status status="PASS" start="2024-09-11T19:23:27.704009" elapsed="9.450281"/>
+<status status="PASS" start="2024-09-14T17:34:27.970105" elapsed="0.000285"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:27.970932" level="INFO">Selecting options from selection list 'xpath://select[@name='fromPort']' by value Boston.</msg>
+<arg>xpath://select[@name='fromPort']</arg>
+<arg>${departure}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-09-14T17:34:27.970559" elapsed="0.096847"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.068409" level="INFO">Selecting options from selection list 'xpath://select[@name='toPort']' by value Cairo.</msg>
+<arg>xpath://select[@name='toPort']</arg>
+<arg>${destination}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.067948" elapsed="0.057901"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-14T17:34:28.127136" level="INFO">Boston</msg>
+<arg>${departure}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.126599" elapsed="0.001156"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-14T17:34:28.128466" level="INFO">Cairo</msg>
+<arg>${destination}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.128247" elapsed="0.000612"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.129859" level="INFO">Clicking button 'css:input[type='submit']'.</msg>
+<arg>css:input[type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.129373" elapsed="0.310963"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.459055" level="INFO">Current page contains text 'Flights from Boston to Cairo'.</msg>
+<arg>Flights from ${departure} to ${destination}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.440843" elapsed="0.018493"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.472390" level="INFO">@{flights} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="261602da5254a64460f991dfadd9864e", element="f.1808BE911EB11D878FEB4E6D369EF3C1.d.5E8EA6E07772FE2B63116397C7B0E480.e.24")&gt; | &lt;selenium.webdr...</msg>
+<var>@{flights}</var>
+<arg>css:table[class='table']&gt;tbody tr</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.459754" elapsed="0.012825"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-14T17:34:28.473516" level="INFO">[&lt;selenium.webdriver.remote.webelement.WebElement (session="261602da5254a64460f991dfadd9864e", element="f.1808BE911EB11D878FEB4E6D369EF3C1.d.5E8EA6E07772FE2B63116397C7B0E480.e.24")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="261602da5254a64460f991dfadd9864e", element="f.1808BE911EB11D878FEB4E6D369EF3C1.d.5E8EA6E07772FE2B63116397C7B0E480.e.25")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="261602da5254a64460f991dfadd9864e", element="f.1808BE911EB11D878FEB4E6D369EF3C1.d.5E8EA6E07772FE2B63116397C7B0E480.e.26")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="261602da5254a64460f991dfadd9864e", element="f.1808BE911EB11D878FEB4E6D369EF3C1.d.5E8EA6E07772FE2B63116397C7B0E480.e.27")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="261602da5254a64460f991dfadd9864e", element="f.1808BE911EB11D878FEB4E6D369EF3C1.d.5E8EA6E07772FE2B63116397C7B0E480.e.28")&gt;]</msg>
+<arg>${flights}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.473067" elapsed="0.000865"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2024-09-14T17:34:28.474998" level="INFO">Length is 5.</msg>
+<arg>${flights}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.474601" elapsed="0.000705"/>
+</kw>
+<kw name="Get Value" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.494297" level="INFO">${price} = 472.56</msg>
+<var>${price}</var>
+<arg>xpath://input[@name='price']</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.475879" elapsed="0.018729"/>
+</kw>
+<kw name="Get Value" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.511901" level="INFO">${number} = 43</msg>
+<var>${number}</var>
+<arg>xpath://input[@name='flight']</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.495318" elapsed="0.016815"/>
+</kw>
+<kw name="Get Value" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.531368" level="INFO">${airline} = Virgin America</msg>
+<var>${airline}</var>
+<arg>xpath://input[@name='airline']</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.512621" elapsed="0.019090"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.547273" level="INFO">Current page contains text '472.56'.</msg>
+<arg>${price}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.532211" elapsed="0.015418"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.562589" level="INFO">Current page contains text '43'.</msg>
+<arg>${number}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.548356" elapsed="0.014568"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.578706" level="INFO">Current page contains text 'Virgin America'.</msg>
+<arg>${airline}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.563335" elapsed="0.015846"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:28.580411" level="INFO">Clicking button 'css:input[value='Choose This Flight']'.</msg>
+<arg>css:input[value='Choose This Flight']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.579817" elapsed="0.351660"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-09-14T17:34:30.932778" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-09-14T17:34:28.932093" elapsed="2.000858"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:30.951950" level="INFO">${Total_Cost} = 914.76</msg>
+<var>${Total_Cost}</var>
+<arg>xpath://em</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:30.933137" elapsed="0.019014"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:30.952560" level="INFO">Clicking element 'xpath://input[@name='inputName']'.</msg>
+<arg>xpath://input[@name='inputName']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:30.952347" elapsed="0.074034"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.027273" level="INFO">Typing text 'John' into text field 'xpath://input[@name='inputName']'.</msg>
+<arg>xpath://input[@name='inputName']</arg>
+<arg>John</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.026948" elapsed="0.124734"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.152478" level="INFO">Clicking element 'xpath://input[@name='address']'.</msg>
+<arg>xpath://input[@name='address']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.152110" elapsed="0.051050"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.204557" level="INFO">Typing text '123 EinoKatu' into text field 'xpath://input[@name='address']'.</msg>
+<arg>xpath://input[@name='address']</arg>
+<arg>123 EinoKatu</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.204030" elapsed="0.055353"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.260188" level="INFO">Clicking element 'xpath://input[@name='city']'.</msg>
+<arg>xpath://input[@name='city']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.259900" elapsed="0.045589"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.306610" level="INFO">Typing text 'Hameenlinna' into text field 'xpath://input[@name='city']'.</msg>
+<arg>xpath://input[@name='city']</arg>
+<arg>Hameenlinna</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.306084" elapsed="0.057470"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.364308" level="INFO">Clicking element 'xpath://input[@name='state']'.</msg>
+<arg>xpath://input[@name='state']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.363998" elapsed="0.047639"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.412591" level="INFO">Typing text 'Kata-Hame' into text field 'xpath://input[@name='state']'.</msg>
+<arg>xpath://input[@name='state']</arg>
+<arg>Kata-Hame</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.412048" elapsed="0.064939"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.477722" level="INFO">Clicking element 'xpath://input[@name='zipCode']'.</msg>
+<arg>xpath://input[@name='zipCode']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.477406" elapsed="0.050432"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.528599" level="INFO">Typing text '13200' into text field 'xpath://input[@name='zipCode']'.</msg>
+<arg>xpath://input[@name='zipCode']</arg>
+<arg>13200</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.528238" elapsed="0.058833"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.588177" level="INFO">Clicking element 'xpath://select[@name='cardType']'.</msg>
+<arg>xpath://select[@name='cardType']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.587699" elapsed="0.137185"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.725638" level="INFO">Selecting options from selection list 'xpath://select[@name='cardType']' by value dinersclub.</msg>
+<arg>xpath://select[@name='cardType']</arg>
+<arg>dinersclub</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.725296" elapsed="0.064787"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.790922" level="INFO">Clicking element 'xpath://input[@name='creditCardNumber']'.</msg>
+<arg>xpath://input[@name='creditCardNumber']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.790603" elapsed="0.050955"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.842344" level="INFO">Typing text '123456789' into text field 'xpath://input[@name='creditCardNumber']'.</msg>
+<arg>xpath://input[@name='creditCardNumber']</arg>
+<arg>123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.842070" elapsed="0.068069"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.911418" level="INFO">Clicking element 'xpath://input[@name='creditCardMonth']'.</msg>
+<arg>xpath://input[@name='creditCardMonth']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.910942" elapsed="0.047723"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:31.960092" level="INFO">Typing text '11' into text field 'xpath://input[@name='creditCardMonth']'.</msg>
+<arg>xpath://input[@name='creditCardMonth']</arg>
+<arg>${cardMonth}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:31.959263" elapsed="0.085341"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.045699" level="INFO">Clicking element 'xpath://input[@name='creditCardYear']'.</msg>
+<arg>xpath://input[@name='creditCardYear']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.045256" elapsed="0.050989"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.097510" level="INFO">Typing text '2018' into text field 'xpath://input[@name='creditCardYear']'.</msg>
+<arg>xpath://input[@name='creditCardYear']</arg>
+<arg>${cardYear}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.096849" elapsed="0.119303"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.217035" level="INFO">Clicking element 'xpath://input[@name='nameOnCard']'.</msg>
+<arg>xpath://input[@name='nameOnCard']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.216514" elapsed="0.045836"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.263742" level="INFO">Typing text 'John Smith' into text field 'xpath://input[@name='nameOnCard']'.</msg>
+<arg>xpath://input[@name='nameOnCard']</arg>
+<arg>John Smith</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.262987" elapsed="0.063048"/>
+</kw>
+<kw name="Select Checkbox" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.327035" level="INFO">Selecting checkbox 'xpath://input[@name='rememberMe']'.</msg>
+<arg>xpath://input[@name='rememberMe']</arg>
+<doc>Selects the checkbox identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.326689" elapsed="0.069321"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.396773" level="INFO">Clicking button 'css:input[type='submit']'.</msg>
+<arg>css:input[type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.396370" elapsed="0.354736"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-09-14T17:34:32.770309" level="INFO">Current page contains text 'Thank you for your purchase today!'.</msg>
+<arg>Thank you for your purchase today!</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.751401" elapsed="0.019224"/>
+</kw>
+<kw name="Table Row Should Contain" owner="SeleniumLibrary">
+<arg>xpath://table[@class='table']</arg>
+<arg>5</arg>
+<arg>${cardMonth} /${cardYear}</arg>
+<doc>Verifies that table row contains text ``expected``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.770990" elapsed="0.041434"/>
+</kw>
+<kw name="Table Row Should Contain" owner="SeleniumLibrary">
+<arg>xpath://table[@class='table']</arg>
+<arg>3</arg>
+<arg>${tCost} USD</arg>
+<doc>Verifies that table row contains text ``expected``.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.812829" elapsed="0.030686"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-09-14T17:34:32.843823" elapsed="0.089192"/>
+</kw>
+<status status="PASS" start="2024-09-14T17:34:23.133418" elapsed="9.799962"/>
 </test>
-<status status="PASS" start="2024-09-11T19:23:27.688833" elapsed="9.466033"/>
+<status status="PASS" start="2024-09-14T17:34:22.955881" elapsed="9.978130"/>
 </suite>
 <statistics>
 <total>
@@ -800,7 +328,7 @@ best.aliexpress.com</msg>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Ping Web">Ping Web</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="RF Test Web Demo">RF Test Web Demo</stat>
 </suite>
 </statistics>
 <errors>
